@@ -35,6 +35,53 @@ public class YelpAPIDemo {
 
             System.out.println(response);
 
+            //JSON - javascript object notation
+            
+            JSONObject responseObj = new JSONObject(response.body());
+            System.out.println(responseObj);
+
+            //data is labeled using keys (like indices for arrays)
+            System.out.println(responseObj.keySet());
+
+            int total = responseObj.getInt("total");
+            System.out.println(total);
+
+            System.out.println(responseObj.get("region"));
+
+            //isolate the reg JSON object
+            JSONObject regObj = responseObj.getJSONObject("region");
+            JSONObject ctrObj = regObj.getJSONObject("center");
+            double lat = ctrObj.getDouble("latitude");
+            System.out.println(lat);
+
+            //can string together multiple method calls to isolate data
+            double lon = responseObj.getJSONObject("region").getJSONObject("center").getDouble("longitude");
+            System.out.println(lon);
+
+            JSONArray bArray = responseObj.getJSONArray("businesses");
+            
+            //the request will return 20 results at a time 
+            // (even though there are more than that total)
+            System.out.println(bArray.length());
+
+            System.out.println(bArray.get(5));
+            
+            //need to cast each element of the array into a JSONObject
+            JSONObject exResult = (JSONObject)bArray.get(5);
+
+            String exName = exResult.getString("name");
+            System.out.println(exName);
+
+            //loop through bArray to print names of all results
+            for (Object o: bArray) {
+                JSONObject obj = (JSONObject) o;
+                System.out.println(obj.getString("name"));
+            }
+
+            for (int i = 0; i < bArray.length(); i++) {
+                JSONObject obj = (JSONObject)bArray.get(i);
+                System.out.println(obj.get("categories"));
+            }
         }
         catch(Exception e) {
             e.printStackTrace();
