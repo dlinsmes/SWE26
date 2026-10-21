@@ -2,6 +2,7 @@ import java.net.URI;
 import java.net.http.*;
 import java.net.http.HttpResponse.BodyHandlers;
 
+//search json jar - maven link - github link - download jar file, copy/paste to lib/ 
 import org.json.*;
 
 public class YelpAPIDemo {
