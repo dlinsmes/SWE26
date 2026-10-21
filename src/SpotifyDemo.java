@@ -11,8 +11,8 @@ import java.util.Scanner;
 
 public class SpotifyDemo {
     
-    static String client_id = "419a7354744b47acba017ab450083ab3";
-    static String client_secret = "b0882ce8bf73455984842a8916347316";
+    static String client_id = "";
+    static String client_secret = "";
     static String redirect_uri = "http://127.0.0.1:8000";
     static HttpClient client = HttpClient.newHttpClient();
 
